@@ -12,10 +12,12 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "baseUrl": ".",
+    "types": ["node"],
+    "typeRoots": ["./node_modules/@types", "./node_modules/dotenv"],
     "paths": {
       "@/*": ["src/*"]
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.test.ts"]
-} 
+  "exclude": ["node_modules"]
+}
