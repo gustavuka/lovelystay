@@ -27,7 +27,6 @@ export async function fetchUserData(username: string) {
       for (const repo of repositories) {
         await createOrUpdateRepository(t, userId, repo)
       }
-      console.log(`Processed ${repositories.length} repositories.`)
     })
 
     const savedUser = await getUserByUsername(db, user.login)

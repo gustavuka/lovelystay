@@ -25,6 +25,14 @@ export async function main(): Promise<void> {
         })
     })
     .demandCommand(1, 'You need to specify a command')
+    .strict()
+    .fail((msg, err, yargs) => {
+      if (err) throw err
+      console.error('Error:', msg)
+      console.error('\nAvailable commands:')
+      console.error(yargs.help())
+      return
+    })
     .help().argv
 
   try {
