@@ -2,6 +2,7 @@
   "extends": ["prettier"],
   "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "semi": ["error", "never"]
   }
 }
