@@ -55,8 +55,10 @@ async function runMigrations(): Promise<void> {
 
     console.log('All migrations completed successfully')
   } catch (error) {
-    console.error('Migration failed:', error)
-    process.exit(1)
+    console.error(
+      'Migration Error:',
+      error instanceof Error ? error.message : error,
+    )
   }
 }
 
