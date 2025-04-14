@@ -2,6 +2,7 @@ import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import { fetchUserData } from './commands/fetch-users'
 import { listUserData } from './commands/list-users'
+import { closeConnection } from '../database'
 
 export async function main(): Promise<void> {
   const argv = await yargs(hideBin(process.argv))
@@ -46,5 +47,8 @@ export async function main(): Promise<void> {
     }
   } catch (error) {
     console.error('Error:', error instanceof Error ? error.message : error)
+  } finally {
+    // Close the database connection
+    await closeConnection()
   }
 }
