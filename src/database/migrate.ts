@@ -1,10 +1,10 @@
+// Load environment variables before any other imports
+import { config } from 'dotenv'
+config()
+
 import { promises as fs } from 'fs'
 import path from 'path'
 import { db } from './index'
-import { config } from 'dotenv'
-
-// Load environment variables
-config()
 
 console.log('Database URL:', process.env.DATABASE_URL)
 
