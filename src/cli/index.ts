@@ -48,7 +48,6 @@ export async function main(): Promise<void> {
   } catch (error) {
     console.error('Error:', error instanceof Error ? error.message : error)
   } finally {
-    // Close the database connection
     await closeConnection()
   }
 }

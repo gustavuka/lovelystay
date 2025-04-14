@@ -41,30 +41,3 @@ export const createOrUpdateRepository = async (
     return { id: repositoryId }
   })
 }
-
-// export const getRepositoriesByUserId = async (
-//   db: DatabaseOrTask,
-//   userId: number,
-// ) => {
-//   return db.any(
-//     `SELECT r.*,
-//             json_agg(json_build_object(
-//               'name', pl.name,
-//               'bytes', rl.bytes
-//             )) as languages
-//      FROM repositories r
-//      LEFT JOIN repository_languages rl ON r.id = rl.repository_id
-//      LEFT JOIN programming_languages pl ON rl.language_id = pl.id
-//      WHERE r.user_id = $1
-//      GROUP BY r.id
-//      ORDER BY r.name`,
-//     [userId],
-//   )
-// }
-
-// export const deleteRepositoriesByUserId = async (
-//   db: DatabaseOrTask,
-//   userId: number,
-// ) => {
-//   return db.none(`DELETE FROM repositories WHERE user_id = $1`, [userId])
-// }

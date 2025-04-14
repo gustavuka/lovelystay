@@ -3,7 +3,7 @@
 import { config } from 'dotenv'
 import { main } from './cli'
 
-// Load environment variables
+ environment variables
 config()
 
 // Start the application
