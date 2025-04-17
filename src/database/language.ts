@@ -2,10 +2,14 @@ import { IDatabase, ITask } from 'pg-promise'
 
 type DatabaseOrTask = IDatabase<{}, any> | ITask<{}>
 
+interface LanguageInsertResult {
+  id: number
+}
+
 export const getOrCreateLanguage = async (
   db: DatabaseOrTask,
   languageName: string,
-) => {
+): Promise<LanguageInsertResult> => {
   return db.one(
     `INSERT INTO programming_languages (name)
      VALUES ($1)
@@ -20,20 +24,11 @@ export const createRepositoryLanguage = async (
   repositoryId: number,
   languageId: number,
   bytes: number,
-) => {
+): Promise<null> => {
   return db.none(
     `INSERT INTO repository_languages (repository_id, language_id, bytes)
      VALUES ($1, $2, $3)
      ON CONFLICT (repository_id, language_id) DO UPDATE SET bytes = EXCLUDED.bytes`,
     [repositoryId, languageId, bytes],
   )
-}
-
-export const deleteRepositoryLanguages = async (
-  db: DatabaseOrTask,
-  repositoryId: number,
-) => {
-  return db.none(`DELETE FROM repository_languages WHERE repository_id = $1`, [
-    repositoryId,
-  ])
 }

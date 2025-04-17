@@ -1,7 +1,10 @@
 import { db } from '../../database'
 import { Table } from 'console-table-printer'
 
-export const listUserData = async (location?: string, language?: string) => {
+export const listUserData = async (
+  location?: string,
+  language?: string,
+): Promise<void> => {
   try {
     const params: string[] = []
     if (location) params.push(`%${location}%`)

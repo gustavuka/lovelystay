@@ -3,7 +3,7 @@ import { createUser, getUserByUsername, updateUser } from '../../database/user'
 import { createOrUpdateRepository } from '../../database/repository'
 import { db } from '../../database'
 
-export async function fetchUserData(username: string) {
+export const fetchUserData = async (username: string): Promise<void> => {
   try {
     const [user, repositories] = await Promise.all([
       fetchUser(username),

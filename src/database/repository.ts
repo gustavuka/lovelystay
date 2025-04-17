@@ -1,18 +1,18 @@
 import { IDatabase, ITask } from 'pg-promise'
 import type { RepositoryWithLanguages } from '../github/api'
-import {
-  getOrCreateLanguage,
-  createRepositoryLanguage,
-  deleteRepositoryLanguages,
-} from './language'
+import { getOrCreateLanguage, createRepositoryLanguage } from './language'
 
 type DatabaseOrTask = IDatabase<{}, any> | ITask<{}>
+
+interface RepositoryInsertResult {
+  id: number
+}
 
 export const createOrUpdateRepository = async (
   db: DatabaseOrTask,
   userId: number,
   repo: RepositoryWithLanguages,
-) => {
+): Promise<RepositoryInsertResult> => {
   return db.tx(async (t) => {
     const existingRepo = await t.oneOrNone(
       `SELECT id FROM repositories WHERE user_id = $1 AND name = $2`,
